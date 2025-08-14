@@ -4,7 +4,7 @@ This is a modern React project setup with **Tailwind CSS** for utility-first sty
 Perfect for building sleek, responsive, and customizable web applications.
 
 ## 🚀 Features
-- ⚡ **React 18** for building interactive UIs
+- ⚡ **React 19** for building interactive UIs
 - 🎨 **Tailwind CSS** for rapid styling
 - 🧩 **Shadcn UI** for pre-built, themeable components
 - 📱 Fully responsive design
