@@ -28,22 +28,36 @@ import {
   AiFillLayout,
   AiFillNotification,
 } from "react-icons/ai";
-// import { GrNext } from "react-icons/gr";
-// import { GrPrevious } from "react-icons/gr";
 import { GoArrowRight } from "react-icons/go";
 import Link from "../website-component/link";
+// import { GrNext } from "react-icons/gr";
+// import { GrPrevious } from "react-icons/gr";
+
+import { LatestArticlesFetch } from "../services/LatestArticlesFetch";
 
 const HomePage = () => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [latestArticles, setLatestArticles] = useState([]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
-
     window.addEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    LatestArticlesFetch()
+      .then((data) => {
+        // console.log(data);
+        setLatestArticles(data.rows);
+        // console.log(allArticles);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   const [countNum, setCountNum] = useState(0);
-  const maxCountNum = 10; 
+  const maxCountNum = 10;
 
   useEffect(() => {
     const myInterval = setInterval(() => {
@@ -83,7 +97,7 @@ const HomePage = () => {
               </p>
               <div className="flex items-center gap-x-3">
                 <a
-                  href="#"
+                  href="#latestArticles"
                   className="md:px-6 transition-all duration-200 ease-linear px-5 md:py-2 py-3 hover:bg-gray-800 hover:shadow-(--shadow-gray-800) font-semibold bg-gray-900 text-white md:text-lg text-base"
                 >
                   Start Reading
@@ -98,7 +112,7 @@ const HomePage = () => {
                 )}
               </div>
             </div>
-            <div className="promo-img bg-center lg:order-last order-first w-full h-96 lg:w-[700px] lg:h-[500px] lg:-mask-linear-80 lg:mask-linear-from-80% lg:mask-linear-to-0% bg-[url(/src/assets/Scientific-Article.jpg)]">
+            <div className="promo-img bg-center lg:order-last order-first w-full h-96 lg:w-[700px] lg:h-[500px] lg:-mask-linear-80 lg:mask-linear-from-80% lg:mask-linear-to-0% bg-[url(/banner.jpg)]">
               {/* <img className='w-full h-full object-cover' src="/src/assets/Scientific-Article.jpg" alt="" /> */}
             </div>
           </div>
@@ -150,59 +164,7 @@ const HomePage = () => {
                 ),
               }}
             />
-            <Categories
-              category={{
-                bgColor: "bg-danger-100",
-                categoryName: "Personal Development",
-                articleNum: "63,476 Articles",
-                categoryIcon: (
-                  <AiFillFund className="text-danger-500 text-3xl" />
-                ),
-              }}
-            />
-            <Categories
-              category={{
-                bgColor: "bg-gray-50",
-                categoryName: "Office Productivity",
-                articleNum: "63,476 Articles",
-                categoryIcon: (
-                  <AiFillLayout className="text-gray-700 text-3xl" />
-                ),
-              }}
-            />
-            <Categories
-              category={{
-                bgColor: "bg-secondary-100",
-                categoryName: "Marketing",
-                articleNum: "63,476 Articles",
-                categoryIcon: (
-                  <AiFillNotification className="text-secondary-500 text-3xl" />
-                ),
-              }}
-            />
-            <Categories
-              category={{
-                bgColor: "bg-gray-100",
-                categoryName: "Photography & Video",
-                articleNum: "63,476 Articles",
-                categoryIcon: <FaCamera className="text-gray-900 text-3xl" />,
-              }}
-            />
           </div>
-          {/* <div className="text-sm flex items-center gap-4">
-            <span className="text-gray-700">
-              We have more category & subcategory.
-            </span>
-            <a
-              href="#"
-              className="arrow-link text-primary-500 flex gap-2 items-center "
-            >
-              <span className="">Browse All</span>
-              <span className="ArrowIcon">
-                <GoArrowRight className="text-xl" />
-              </span>
-            </a>
-          </div> */}
           <Link
             content={`We have more category & subcategory.`}
             linkContent={`Browse All`}
@@ -230,262 +192,48 @@ const HomePage = () => {
                   onSlideChange={() => console.log("slide change")}
                   // onSwiper={(swiper) => console.log(swiper)}
                 >
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-danger-700",
-                        articleCategoryBgColor: "bg-danger-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1723773691807-3a64654e3fa7?q=80&w=2117&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "energy",
-                        articleTitle:
-                          "Latest Artificial Intelligence Technologies in 2025",
-                        articleAuthor: "Ahmed Mansour",
-                        authImg: "/y-person.jpg",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-success-700",
-                        articleCategoryBgColor: "bg-success-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1726729263972-635ad59d005f?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "success",
-                        articleTitle: "How to Start a Business from Home",
-                        articleAuthor: "Fatima Alhassan",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-secondary-700",
-                        articleCategoryBgColor: "bg-secondary-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1664298768597-94ad72d58cc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "Development",
-                        articleTitle:
-                          "Health Benefits of Daily Walking Routine",
-                        articleAuthor: "Omar Saleh",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-warning-700",
-                        articleCategoryBgColor: "bg-warning-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1664476583978-878f351c8597?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "Marketing",
-                        articleTitle: "Top Must-Read Novels Around the World",
-                        articleAuthor: "Nadine Khalil",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-danger-700",
-                        articleCategoryBgColor: "bg-danger-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1661375427386-64ac35086427?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "IT & software ",
-                        articleTitle:
-                          "Climate Change Impact on Global Agriculture",
-                        articleAuthor: "Hassan Barakat",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-secondary-700",
-                        articleCategoryBgColor: "bg-secondary-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1661402433021-63b272c1b999?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "lifestyle",
-                        articleTitle:
-                          "Mobile Photography Tips for Stunning Shots",
-                        articleAuthor: "Layla Darwish",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-success-700",
-                        articleCategoryBgColor: "bg-success-100",
-                        articleImg:
-                          "https://images.unsplash.com/photo-1677694028118-e4ad83cec03e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "energy",
-                        articleTitle: "Quick Tips for Learning a New Language",
-                        articleAuthor: "Tariq Zahid",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-danger-700",
-                        articleCategoryBgColor: "bg-danger-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1723773691807-3a64654e3fa7?q=80&w=2117&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "energy",
-                        articleTitle:
-                          "Latest Artificial Intelligence Technologies in 2025",
-                        articleAuthor: "Ahmed Mansour",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-warning-700",
-                        articleCategoryBgColor: "bg-warning-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1726729263972-635ad59d005f?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "success",
-                        articleTitle: "How to Start a Business from Home",
-                        articleAuthor: "Fatima Alhassan",
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <LatestArticles
-                      anArticle={{
-                        articleCategoryTextColor: "text-secondary-700",
-                        articleCategoryBgColor: "bg-secondary-100",
-                        articleImg:
-                          "https://plus.unsplash.com/premium_photo-1664298768597-94ad72d58cc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        articleCategory: "Development",
-                        articleTitle:
-                          "Health Benefits of Daily Walking Routine",
-                        articleAuthor: "Omar Saleh",
-                      }}
-                    />
-                  </SwiperSlide>
+                  {latestArticles.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <LatestArticles
+                        anArticle={{
+                          articleCategoryTextColor: "text-secondary-700",
+                          articleCategoryBgColor: "bg-secondary-100",
+                          articleImg: `https://tamkeen-dev.com${item.field_image}`,
+                          // articleCategory: "energy",
+                          articleTitle: item.title,
+                          articleBody: item.body,
+                          articleAuthor: item.author,
+                          // authImg: "/y-person.jpg",
+                        }}
+                      />
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </div>
             ) : (
-              <div className="w-full grid xl:grid-cols-10 lg:grid-cols-9 md:grid-cols-6 grid-cols-10 gap-6">
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-secondary-700",
-                    articleCategoryBgColor: "bg-secondary-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1723773691807-3a64654e3fa7",
-                    articleCategory: "energy",
-                    articleTitle:
-                      "Latest Artificial Intelligence Technologies in 2025",
-                    articleAuthor: "Ahmed Mansour",
-                    authImg: "/y-person.jpg",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-warning-700",
-                    articleCategoryBgColor: "bg-warning-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1726729263972-635ad59d005f?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "success",
-                    articleTitle: "How to Start a Business from Home",
-                    articleAuthor: "Fatima Alhassan",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-danger-700",
-                    articleCategoryBgColor: "bg-danger-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1664298768597-94ad72d58cc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "Development",
-                    articleTitle: "Health Benefits of Daily Walking Routine",
-                    articleAuthor: "Omar Saleh",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-success-700",
-                    articleCategoryBgColor: "bg-success-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1664476583978-878f351c8597?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "Marketing",
-                    articleTitle: "Top Must-Read Novels Around the World",
-                    articleAuthor: "Nadine Khalil",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-danger-700",
-                    articleCategoryBgColor: "bg-danger-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1661375427386-64ac35086427?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "IT & software ",
-                    articleTitle: "Climate Change Impact on Global Agriculture",
-                    articleAuthor: "Hassan Barakat",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-warning-700",
-                    articleCategoryBgColor: "bg-warning-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1661402433021-63b272c1b999?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "lifestyle",
-                    articleTitle: "Mobile Photography Tips for Stunning Shots",
-                    articleAuthor: "Layla Darwish",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-secondary-700",
-                    articleCategoryBgColor: "bg-secondary-100",
-                    articleImg:
-                      "https://images.unsplash.com/photo-1677694028118-e4ad83cec03e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "energy",
-                    articleTitle: "Quick Tips for Learning a New Language",
-                    articleAuthor: "Tariq Zahid",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-success-700",
-                    articleCategoryBgColor: "bg-success-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1723773691807-3a64654e3fa7?q=80&w=2117&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "energy",
-                    articleTitle:
-                      "Latest Artificial Intelligence Technologies in 2025",
-                    articleAuthor: "Ahmed Mansour",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-warning-700",
-                    articleCategoryBgColor: "bg-warning-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1726729263972-635ad59d005f?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "success",
-                    articleTitle: "How to Start a Business from Home",
-                    articleAuthor: "Fatima Alhassan",
-                  }}
-                />
-                <LatestArticles
-                  anArticle={{
-                    articleCategoryTextColor: "text-secondary-700",
-                    articleCategoryBgColor: "bg-secondary-100",
-                    articleImg:
-                      "https://plus.unsplash.com/premium_photo-1664298768597-94ad72d58cc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    articleCategory: "Development",
-                    articleTitle: "Health Benefits of Daily Walking Routine",
-                    articleAuthor: "Omar Saleh",
-                  }}
-                />
+              <div className="w-full mb-10 grid xl:grid-cols-10 lg:grid-cols-9 md:grid-cols-6 grid-cols-10 gap-6">
+                {latestArticles.map((item, index) => (
+                  <div key={index} className="contents">
+                    <LatestArticles
+                      anArticle={{
+                        articleCategoryTextColor: "text-secondary-700",
+                        articleCategoryBgColor: "bg-secondary-100",
+                        articleImg: `https://tamkeen-dev.com${item.field_image}`,
+                        // articleCategory: "energy",
+                        articleTitle: item.title,
+                        articleBody: item.body,
+                        articleAuthor: item.author,
+                        // authImg: "/y-person.jpg",
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
             )}
+            <Link
+              content={`We have more Articles`}
+              linkContent={`Browse All`}
+            />
           </div>
         </div>
       </div>
@@ -501,7 +249,7 @@ const HomePage = () => {
                 <JobOpportunity
                   JobOpportunityDetails={{
                     jobImage:
-                      "https://images.unsplash.com/photo-1586253633269-69254aa67408",
+                      "/opportunities-1.jpg",
                     jobCategory: "Featured",
                     jobCategoryBgColor: "bg-danger-100",
                     jobCategoryTextColor: "text-danger-600",
@@ -516,7 +264,7 @@ const HomePage = () => {
                 <JobOpportunity
                   JobOpportunityDetails={{
                     jobImage:
-                      "https://plus.unsplash.com/premium_photo-1689052849186-a1e307f6400a",
+                      "/opportunities-2.jpg",
                     jobCategory: "Necessary",
                     jobCategoryBgColor: "bg-success-100",
                     jobCategoryTextColor: "text-success-600",
@@ -531,7 +279,7 @@ const HomePage = () => {
                 <JobOpportunity
                   JobOpportunityDetails={{
                     jobImage:
-                      "https://plus.unsplash.com/premium_photo-1688753653862-48dcc0ec7c11",
+                      "/opportunities-3.jpeg",
                     jobCategory: "Featured",
                     jobCategoryBgColor: "bg-secondary-100",
                     jobCategoryTextColor: "text-secondary-600",
@@ -546,7 +294,7 @@ const HomePage = () => {
                 <JobOpportunity
                   JobOpportunityDetails={{
                     jobImage:
-                      "https://plus.unsplash.com/premium_photo-1688700439239-8120f554eb2e",
+                      "/opportunities-4.jpeg",
                     jobCategory: "Fast",
                     jobCategoryBgColor: "bg-danger-100",
                     jobCategoryTextColor: "text-danger-600",

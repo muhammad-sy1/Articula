@@ -23,7 +23,7 @@ const JobOpportunity = ({ JobOpportunityDetails }) => {
           href="#"
           className="h-full bg-white hover:shadow-(--shadow-gray-800) flex border-1 border-gray-100"
         >
-          <div className="w-1/3 h-full flex overflow-hidden">
+          <div className="w-1/3 h-40 flex overflow-hidden">
             <img className="w-full h-full object-cover transition-transform duration-200 hover:scale-110" src={jobImage} alt="" />
           </div>
           <div className="w-2/3 px-6 py-4 flex flex-col gap-3 justify-between">
