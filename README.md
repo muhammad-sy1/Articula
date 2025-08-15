@@ -34,5 +34,3 @@ http://localhost:5173
 4. Important: After opening the link in your browser, add /home/homepage at the end of the URL:
    ```bash
    http://localhost:5173/home/homepage
-
-
