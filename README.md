@@ -15,4 +15,4 @@ Tailwind CSS** for rapid styling
 
 1. Clone the repository:
    ```bash
-   git clone hthttps://github.com/your-username/your-repo.git
+   git clone https://github.com/muhammad-sy1/Articula
