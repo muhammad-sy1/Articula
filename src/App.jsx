@@ -1,26 +1,45 @@
 import { Routes, Route } from "react-router";
+import { useState } from "react";
+
 import "./App.css";
-// import MyDashboard from "./dashboard-routes/MyDashboard";
-import MainPage from "./website-routes/MainPage";
 import DashboardLogIn from "./dashboard-routes/dashboardLogIn";
-// import { useEffect, useState } from "react";
+import Jobs from "./website-routes/Jobs";
+import HomePage from "./website-routes/HomePage";
+import About from "./website-routes/About";
+import Contact from "./website-routes/Contact";
+import FAQs from "./website-routes/FAQs";
+import CreateAccount from "./website-routes/CreateAccount";
+import SignIn from "./website-routes/SignIn";
+import Articles from "./website-routes/Articles";
+import MyAccount from "./website-routes/MyAccount";
+import Error404 from "./website-routes/Error404";
+import MyArticles from "./website-routes/MyArticles";
+
+import UsernameContext from "./context/UsernameContext";
 
 function App() {
-//   const [isDarkMode, setIsDarkMode] = useState(false);
-//   useEffect(() => {
-//     document.body.className = isDarkMode ? "dark" : "light";
-//   }, [isDarkMode]);
-
+  const [username, setUsername] = useState("Muhammad Alyousef");
+  const userValues = { username, setUsername };
   return (
     <>
-      <div>
+      <UsernameContext.Provider value={userValues}>
         <Routes>
           <Route>
-            <Route path="home/*" element={<MainPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faqs" element={<FAQs />} />
+            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/my-articles" element={<MyArticles />} />
+            <Route path="/*" element={<Error404 />} />
             <Route path="dashboard/*" element={<DashboardLogIn />} />
           </Route>
         </Routes>
-      </div>
+      </UsernameContext.Provider>
     </>
   );
 }

@@ -116,7 +116,7 @@ const CreateAccount = () => {
         accountStatus={{
           status: "Already have an account?",
           buttonContent: "Sign In",
-          path: "/home/sign-in",
+          path: "/sign-in",
         }}
       />
       <div className="relative">

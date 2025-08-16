@@ -6,6 +6,7 @@ import "swiper/css";
 import ArticlesPerType from "../website-component/ArticlesPerType";
 import Footer from "../website-component/Footer";
 import Breadcrumb from "../website-component/Breadcrumb";
+import { NavLink } from "react-router";
 
 const Articles = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -157,6 +158,18 @@ const Articles = () => {
       </div>
     );
   });
+
+  if (!cred) {
+    return (
+      <>
+        <Navbar />
+        <div className="flex flex-col gap-y-5 mt-10 justify-center items-center">
+          <div className="font-semibold text-2xl">Sign in to see all the articles ...</div>
+          <NavLink to="/sign-in" className="primary-btn font-semibold">Sing in</NavLink>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

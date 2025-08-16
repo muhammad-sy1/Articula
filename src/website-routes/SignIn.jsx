@@ -58,15 +58,15 @@ const SignIn = () => {
         localStorage.setItem("csrf_token", data.csrf_token);
         // localStorage.setItem("logout_token", data.logout_token);
 
-        localStorage.setItem("userId", data.current_user.uid);
+        // localStorage.setItem("userId", data.current_user.uid);
         // setCurr_id(data.current_user.uid);
 
-        localStorage.setItem("username", data.current_user.name);
+        // localStorage.setItem("username", data.current_user.name);
         setCurr_username(data.current_user.name);
         console.log(curr_username);
 
         // setIsAuthenticated(true);
-        navigate("/home/homepage");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.message);
@@ -84,7 +84,7 @@ const SignIn = () => {
         accountStatus={{
           status: "Don’t have account?",
           buttonContent: "Create Account",
-          path: "/home/create-account",
+          path: "/create-account",
         }}
       />
       <div className="relative">

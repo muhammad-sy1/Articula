@@ -81,12 +81,12 @@ const Navbar = () => {
                 aria-label="Global"
               >
                 <div className="hidden nav-links text-gray-300 text-sm font-medium lg:flex lg:gap-x-5">
-                  <NavLink to="/home/homepage">Home</NavLink>
-                  <NavLink to="/home/articles">Articles</NavLink>
-                  <NavLink to="/home/jobs">Jobs</NavLink>
-                  <NavLink to="/home/about">About Us</NavLink>
-                  <NavLink to="/home/contact">Contact</NavLink>
-                  <NavLink to="/home/faqs">FAQs</NavLink>
+                  <NavLink to="/">Home</NavLink>
+                  <NavLink to="/articles">Articles</NavLink>
+                  <NavLink to="/jobs">Jobs</NavLink>
+                  <NavLink to="/about">About Us</NavLink>
+                  <NavLink to="/contact">Contact</NavLink>
+                  <NavLink to="/faqs">FAQs</NavLink>
                 </div>
                 <div className="hidden social-links gap-1 lg:flex lg:flex-1 items-center lg:justify-end">
                   <a
@@ -135,7 +135,7 @@ const Navbar = () => {
               <div className="flex flex-col h-full justify-between">
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
-                    <NavLink to="/home/homepage" onClick={handleSideMenu}>
+                    <NavLink to="/" onClick={handleSideMenu}>
                       <img src="/Favicon.svg" className="w-10" alt="" />
                     </NavLink>
                     <button
@@ -149,32 +149,32 @@ const Navbar = () => {
                   </div>
                   <div className="flex flex-col justify-between">
                     <div className="space-y-2">
-                      <NavLink to="/home/homepage" onClick={handleSideMenu}>
+                      <NavLink to="/" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           Home
                         </span>
                       </NavLink>
-                      <NavLink to="/home/articles" onClick={handleSideMenu}>
+                      <NavLink to="/articles" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           Articles
                         </span>
                       </NavLink>
-                      <NavLink to="/home/jobs" onClick={handleSideMenu}>
+                      <NavLink to="/jobs" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           Jobs
                         </span>
                       </NavLink>
-                      <NavLink to="/home/about" onClick={handleSideMenu}>
+                      <NavLink to="/about" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           About Us
                         </span>
                       </NavLink>
-                      <NavLink to="/home/contact" onClick={handleSideMenu}>
+                      <NavLink to="/contact" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           Contact
                         </span>
                       </NavLink>
-                      <NavLink to="/home/faqs" onClick={handleSideMenu}>
+                      <NavLink to="/faqs" onClick={handleSideMenu}>
                         <span className="text-sm/6 font-medium hover:bg-(--gray-50)/5 p-3 w-full hover:text-white text-gray-500">
                           FAQs
                         </span>
@@ -244,7 +244,7 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div className="brand">
-                  <NavLink to="/home/homepage">
+                  <NavLink to="/">
                     <span className="flex">
                       <Brand className="md:w-36 w-30" fill={"#000000"} />
                     </span>
@@ -255,12 +255,12 @@ const Navbar = () => {
                     isFixed ? "lg:flex" : ""
                   }`}
                 >
-                  <NavLink to="/home/homepage">Home</NavLink>
-                  <NavLink to="/home/articles">Articles</NavLink>
-                  <NavLink to="/home/jobs">Jobs</NavLink>
-                  <NavLink to="/home/about">About Us</NavLink>
-                  <NavLink to="/home/contact">Contact</NavLink>
-                  <NavLink to="/home/faqs">FAQs</NavLink>
+                  <NavLink to="/">Home</NavLink>
+                  <NavLink to="/articles">Articles</NavLink>
+                  <NavLink to="/jobs">Jobs</NavLink>
+                  <NavLink to="/about">About Us</NavLink>
+                  <NavLink to="/contact">Contact</NavLink>
+                  <NavLink to="/faqs">FAQs</NavLink>
                   <NavLink to="/dashboard">Go to dashboard</NavLink>
                 </div>
                 {isLoggedIn ? (
@@ -283,13 +283,13 @@ const Navbar = () => {
                       <DropdownMenuContent className="w-56" align="start">
                         <DropdownMenuGroup>
                           <DropdownMenuItem className="px-1 py-0">
-                            <NavLink className="flex w-full px-2 py-2 " to="/home/my-account">
+                            <NavLink className="flex w-full px-2 py-2 " to="/my-account">
                               My Account
                             </NavLink>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem className="px-1 py-0">
-                            <NavLink className="flex w-full px-2 py-2" to="/home/my-articles">
+                            <NavLink className="flex w-full px-2 py-2" to="/my-articles">
                               My Articles
                             </NavLink>
                           </DropdownMenuItem>
@@ -298,10 +298,11 @@ const Navbar = () => {
                             <NavLink
                               onClick={() => {
                                 localStorage.removeItem("csrf_token");
+                                localStorage.removeItem("credentials");
                                 window.location.reload();
                               }}
                               className="flex w-full px-2 py-2"
-                              to="/home/homepage"
+                              to="/"
                             >
                               Log Out
                             </NavLink>
@@ -313,14 +314,14 @@ const Navbar = () => {
                 ) : (
                   <div className="flex gap-x-4">
                     <div className="flex items-center">
-                      <NavLink to="/home/create-account">
+                      <NavLink to="/create-account">
                         <span className="ms-1 transition-all duration-200 ease-linear lg:text-base text-sm hover:bg-primary-200 bg-primary-100 hover:text-primary-600 text-primary-500 font-semibold md:px-4 px-2 py-2 lg:px-6 lg:py-2">
                           Create Account
                         </span>
                       </NavLink>
                     </div>
                     <div className="flex items-center">
-                      <NavLink to="/home/sign-in">
+                      <NavLink to="/sign-in">
                         <span className="transition-all duration-200 ease-linear lg:text-base text-sm hover:bg-primary-600 hover:shadow-(--shadow-primary-600) bg-primary-500 text-white font-semibold md:px-4 px-2 py-2 lg:px-6 lg:py-2">
                           Sign In
                         </span>

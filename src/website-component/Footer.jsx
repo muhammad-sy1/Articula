@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="grid lg:grid-cols-11 grid-cols-12 lg:gap-4 gap-8">
             <div className="lg:col-span-3 md:col-span-4 col-span-12 lg:order-1 order-1 md:order-first">
               <div className="flex flex-col gap-3">
-                <NavLink to="/home/homepage">
+                <NavLink to="/">
                   <Brand className="md:w-36 w-30" fill={"#FFFFFF"} />
                 </NavLink>
                 <span className="text-gray-500 text-sm w-4/5">
@@ -96,25 +96,25 @@ const Footer = () => {
                 <div className="font-medium text-sm uppercase">Quick Links</div>
                 <ul className="text-sm text-gray-500 flex flex-col gap-3">
                   <li>
-                    <NavLink to="/home/about">
+                    <NavLink to="/about">
                       About
                       <GoArrowRight />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/home/contact">
+                    <NavLink to="/contact">
                       Contact
                       <GoArrowRight />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/home/jobs">
+                    <NavLink to="/jobs">
                       Jobs
                       <GoArrowRight />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/home/articles">
+                    <NavLink to="/articles">
                       Articles
                       <GoArrowRight />
                     </NavLink>
@@ -135,7 +135,7 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
-                    <NavLink to="/home/faqs">
+                    <NavLink to="/faqs">
                       FAQs
                       <GoArrowRight />
                     </NavLink>
