@@ -108,7 +108,7 @@ const MyArticles = () => {
         else throw new Error("err");
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMyArticles(data.rows);
         // console.log(myArticles);
       })
@@ -194,7 +194,7 @@ const MyArticles = () => {
         else throw new Error("err");
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setArticleTags(data);
       })
       .catch((err) => {
@@ -210,7 +210,7 @@ const MyArticles = () => {
         else throw new Error("err");
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setArticleCategory(data);
       })
       .catch((err) => {
@@ -275,6 +275,14 @@ const MyArticles = () => {
       });
   };
 
+  const errorMessage = () => {
+    return (
+      <>
+        <div className="">error</div>
+      </>
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -299,9 +307,9 @@ const MyArticles = () => {
                   <ArticlesPerType
                     article={{
                       authName: `${item.author}`,
-                      arSupTitle: `${item.title}`,
-                      arSubTitle: `${item.body}`,
-                      arImg: `${item.field_image}`,
+                      arTitle: `${item.title}`,
+                      arBody: `${item.body}`,
+                      arImg: `https://tamkeen-dev.com/${item.field_image}`,
                     }}
                   />
                 </div>
@@ -322,7 +330,9 @@ const MyArticles = () => {
             ))}
           </div>
           <Dialog open={open} onOpenChange={setOpen}>
-            <form onSubmit={() => setOpen(false)}>
+            <form
+            // onSubmit={() => setOpen(true)}
+            >
               <DialogTrigger asChild>
                 <button
                   onClick={fetchTagsAndCategories}
@@ -471,6 +481,7 @@ const MyArticles = () => {
                     </Select>
                   </div>
                 </div>
+                {/* <div className="">{errorMessage()}</div> */}
                 <DialogFooter>
                   <DialogClose asChild>
                     <button
@@ -488,7 +499,7 @@ const MyArticles = () => {
                       formData.body &&
                       formData.title
                         ? fetchArticle
-                        : ""
+                        : errorMessage
                     }
                     className="text-sm rounded-none primary-btn hover:shadow-none!"
                     type="submit"

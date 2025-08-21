@@ -14,6 +14,7 @@ import Articles from "./website-routes/Articles";
 import MyAccount from "./website-routes/MyAccount";
 import Error404 from "./website-routes/Error404";
 import MyArticles from "./website-routes/MyArticles";
+import ArticleDetails from "./website-routes/ArticleDetails";
 
 import UsernameContext from "./context/UsernameContext";
 
@@ -27,6 +28,7 @@ function App() {
           <Route>
             <Route path="/" element={<HomePage />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/article-details/:articleID" element={<ArticleDetails  />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

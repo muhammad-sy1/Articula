@@ -80,23 +80,7 @@ const Articles = () => {
     },
   ];
 
-  let articleTypeList = articleType.map((item, index) => {
-    return (
-      <SwiperSlide className="w-fit! m-3 relative">
-        <div
-          onClick={() => setActiveIndex(index)}
-          className={`not-optional:cursor-pointer transition duration-200 ease-linear before:content-[''] before:flex before:absolute before:-bottom-3 before:left-0 before:w-0 before:h-[2px] flex text-gray-700 hover:text-gray-900 text-sm ${
-            activeIndex === index
-              ? "before:bg-gray-700 before:w-full text-gray-900"
-              : "before:w-0"
-          }`}
-          key={index}
-        >
-          {item.arType}
-        </div>
-      </SwiperSlide>
-    );
-  });
+  // let articleTypeList = ;
 
   let authorSuggested = [
     {
@@ -164,8 +148,12 @@ const Articles = () => {
       <>
         <Navbar />
         <div className="flex flex-col gap-y-5 mt-10 justify-center items-center">
-          <div className="font-semibold text-2xl">Sign in to see all the articles ...</div>
-          <NavLink to="/sign-in" className="primary-btn font-semibold">Sing in</NavLink>
+          <div className="font-semibold text-2xl">
+            Sign in to see all the articles ...
+          </div>
+          <NavLink to="/sign-in" className="primary-btn font-semibold">
+            Sing in
+          </NavLink>
         </div>
       </>
     );
@@ -185,7 +173,21 @@ const Articles = () => {
                 onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
               >
-                {articleTypeList}
+                {articleType.map((item, index) => (
+                  <SwiperSlide className="w-fit! m-3 relative">
+                    <div
+                      onClick={() => setActiveIndex(index)}
+                      className={`not-optional:cursor-pointer transition duration-200 ease-linear before:content-[''] before:flex before:absolute before:-bottom-3 before:left-0 before:w-0 before:h-[2px] flex text-gray-700 hover:text-gray-900 text-sm ${
+                        activeIndex === index
+                          ? "before:bg-gray-700 before:w-full text-gray-900"
+                          : "before:w-0"
+                      }`}
+                      key={index}
+                    >
+                      {item.arType}
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
             <div className="flex flex-col gap-y-3">

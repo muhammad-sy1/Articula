@@ -261,7 +261,6 @@ const Navbar = () => {
                   <NavLink to="/about">About Us</NavLink>
                   <NavLink to="/contact">Contact</NavLink>
                   <NavLink to="/faqs">FAQs</NavLink>
-                  <NavLink to="/dashboard">Go to dashboard</NavLink>
                 </div>
                 {isLoggedIn ? (
                   <div className="">

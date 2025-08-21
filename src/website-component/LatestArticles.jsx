@@ -1,5 +1,6 @@
 import React from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { NavLink } from "react-router";
 
 const LatestArticles = ({ anArticle }) => {
   const {
@@ -7,6 +8,7 @@ const LatestArticles = ({ anArticle }) => {
     articleTitle,
     articleAuthor,
     articleBody,
+    aID,
     // articleCategory,
     // authImg,
     // articleCategoryTextColor,
@@ -34,12 +36,12 @@ const LatestArticles = ({ anArticle }) => {
             >
               {articleCategory}
             </span> */}
-            <a
-              href="#"
+            <NavLink
+              to={`/article-details/${aID}`}
               className="hover:text-gray-400 inline-flex text-sm font-medium w-2/3 truncate"
             >
               {articleTitle}
-            </a>
+            </NavLink>
             <div className="line-clamp-1">{articleBody}</div>
           </div>
           <a href="#" className="p-3.5 flex items-center gap-2">

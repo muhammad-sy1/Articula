@@ -18,15 +18,15 @@ import LatestArticles from "../website-component/LatestArticles";
 import JobOpportunity from "../website-component/JobOpportunity";
 import TopWriter from "../website-component/TopWriter";
 
-import { FaCamera } from "react-icons/fa";
+// import { FaCamera } from "react-icons/fa";
 import {
   AiFillAlert,
   AiFillBank,
   AiFillCloud,
   AiFillCompass,
-  AiFillFund,
-  AiFillLayout,
-  AiFillNotification,
+  // AiFillFund,
+  // AiFillLayout,
+  // AiFillNotification,
 } from "react-icons/ai";
 import { GoArrowRight } from "react-icons/go";
 import Link from "../website-component/link";
@@ -172,7 +172,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="bg-gray-50">
-        <div className="container mx-auto  lg:px-10 px-4">
+        <div className="container mx-auto lg:px-10 px-4">
           <div className="LatestArticles flex flex-col items-center justify-between py-10">
             <div className="text-4xl mb-10 font-semibold">Latest Articles</div>
             {width < 640 ? (
@@ -203,6 +203,7 @@ const HomePage = () => {
                           articleTitle: item.title,
                           articleBody: item.body,
                           articleAuthor: item.author,
+                          articleId: item.id,
                           // authImg: "/y-person.jpg",
                         }}
                       />
@@ -223,6 +224,7 @@ const HomePage = () => {
                         articleTitle: item.title,
                         articleBody: item.body,
                         articleAuthor: item.author,
+                        aID: item.id,
                         // authImg: "/y-person.jpg",
                       }}
                     />
