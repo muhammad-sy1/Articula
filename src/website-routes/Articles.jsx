@@ -11,7 +11,27 @@ import { NavLink } from "react-router";
 const Articles = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [allArticles, setAllArticles] = useState([]);
+  const [tags, setTags] = useState([]);
   const cred = localStorage.getItem("credentials");
+
+  useEffect(() => {
+    fetch("https://tamkeen-dev.com/api/terms/tags")
+      .then((response) => {
+        if (response.ok) return response.json();
+        else throw new Error("err");
+      })
+      .then((data) => {
+        // console.log(data);
+        setTags(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        // console.log("finally");
+      });
+  }, []);
+
   useEffect(() => {
     fetch(
       `https://tamkeen-dev.com/api/blogs-api?items_per_page=50&sort_by=created_date&sort_order=DESC`,
@@ -37,50 +57,6 @@ const Articles = () => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  let articleType = [
-    { id: 1, arType: "Business" },
-    {
-      id: 2,
-      arType: "Finance & Accounting",
-    },
-    {
-      id: 3,
-      arType: "Marketing",
-    },
-    {
-      id: 4,
-      arType: "IT & Software",
-    },
-    { id: 5, arType: "Business" },
-    {
-      id: 6,
-      arType: "Finance & Accounting",
-    },
-    {
-      id: 7,
-      arType: "Marketing",
-    },
-    {
-      id: 8,
-      arType: "IT & Software",
-    },
-    { id: 9, arType: "Business" },
-    {
-      id: 10,
-      arType: "Finance & Accounting",
-    },
-    {
-      id: 11,
-      arType: "Marketing",
-    },
-    {
-      id: 12,
-      arType: "IT & Software",
-    },
-  ];
-
-  // let articleTypeList = ;
 
   let authorSuggested = [
     {
@@ -113,35 +89,7 @@ const Articles = () => {
     },
   ];
 
-  let authorList = authorSuggested.map((item, key) => {
-    return (
-      <div
-        key={key}
-        className="flex justify-between items-start xl:gap-20 lg:gap-10 border-b pb-5 border-gray-200"
-      >
-        <a href="#" className="flex gap-3 items-start">
-          <span className="size-8 rounded-full shrink-0 overflow-hidden">
-            <img
-              src={item.imgURL}
-              alt=""
-              className="size-full object-cover object-center"
-            />
-          </span>
-          <span className="flex flex-col gap-1">
-            <span className="font-bold">{item.name}</span>
-            <span className="text-xs text-gray-300 line-clamp-2">
-              {item.describe}
-            </span>
-          </span>
-        </a>
-        <div className="">
-          <button className="rounded-3xl border px-3 py-2 cursor-pointer hover:text-white hover:bg-black transition duration-200">
-            Follow
-          </button>
-        </div>
-      </div>
-    );
-  });
+  // let authorList =
 
   if (!cred) {
     return (
@@ -173,7 +121,7 @@ const Articles = () => {
                 onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
               >
-                {articleType.map((item, index) => (
+                {tags.map((item, index) => (
                   <SwiperSlide className="w-fit! m-3 relative">
                     <div
                       onClick={() => setActiveIndex(index)}
@@ -184,7 +132,7 @@ const Articles = () => {
                       }`}
                       key={index}
                     >
-                      {item.arType}
+                      {item.name}
                     </div>
                   </SwiperSlide>
                 ))}
@@ -210,7 +158,35 @@ const Articles = () => {
             <div className="flex">
               <div className="flex flex-col gap-6">
                 <div className="text-lg font-semibold">Who to follow</div>
-                <div className="flex flex-col gap-4">{authorList}</div>
+                <div className="flex flex-col gap-4">
+                  {authorSuggested.map((item, key) => (
+                    <div
+                      key={key}
+                      className="flex justify-between items-start xl:gap-20 lg:gap-10 border-b pb-5 border-gray-200"
+                    >
+                      <a href="#" className="flex gap-3 items-start">
+                        <span className="size-8 rounded-full shrink-0 overflow-hidden">
+                          <img
+                            src={item.imgURL}
+                            alt=""
+                            className="size-full object-cover object-center"
+                          />
+                        </span>
+                        <span className="flex flex-col gap-1">
+                          <span className="font-bold">{item.name}</span>
+                          <span className="text-xs text-gray-300 line-clamp-2">
+                            {item.describe}
+                          </span>
+                        </span>
+                      </a>
+                      <div className="">
+                        <button className="rounded-3xl border px-3 py-2 cursor-pointer hover:text-white hover:bg-black transition duration-200">
+                          Follow
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
