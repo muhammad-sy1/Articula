@@ -139,14 +139,15 @@ const Articles = () => {
               </Swiper>
             </div>
             <div className="flex flex-col gap-y-3">
-              {allArticles.map((item) => (
-                <div key={item.id} className="content ">
+              {allArticles.map((item, index) => (
+                <div key={index} className="content">
                   <ArticlesPerType
                     article={{
-                      authImg: "/y-person.jpg",
+                      // authImg: "/y-person.jpg",
                       authName: item.author,
                       arTitle: item.title,
                       arBody: item.body,
+                      aID: item.id,
                       arImg: `https://tamkeen-dev.com${item.field_image}`,
                     }}
                   />
