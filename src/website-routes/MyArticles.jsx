@@ -306,9 +306,10 @@ const MyArticles = () => {
                 <div className="md:col-span-5 col-span-6">
                   <ArticlesPerType
                     article={{
-                      authName: `${item.author}`,
-                      arTitle: `${item.title}`,
-                      arBody: `${item.body}`,
+                      aID: item.id,
+                      authName: item.author,
+                      arTitle: item.title,
+                      arBody: item.body,
                       arImg: `https://tamkeen-dev.com/${item.field_image}`,
                     }}
                   />
