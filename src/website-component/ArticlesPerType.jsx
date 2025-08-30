@@ -27,13 +27,16 @@ const ArticlesPerType = ({ article }) => {
             {arBody}
           </a>
         </span>
-        <a href="#" className="w-40 h-28 shrink-0 order-first overflow-hidden">
+        <NavLink
+          to={`/article-details/${aID}`}
+          className="w-40 h-28 shrink-0 order-first overflow-hidden"
+        >
           <img
             className="w-full h-full object-cover hover:scale-110 transition"
             src={`${arImg}`}
             alt=""
           />
-        </a>
+        </NavLink>
       </div>
       {/* </div> */}
     </>

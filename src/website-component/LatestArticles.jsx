@@ -22,13 +22,16 @@ const LatestArticles = ({ anArticle }) => {
       >
         <div className="flex flex-col">
           <div className="img-box w-full h-48">
-            <a className="w-full h-48 overflow-hidden" href="#">
+            <NavLink
+              to={`/article-details/${aID}`}
+              className="w-full h-48 overflow-hidden"
+            >
               <img
                 src={articleImg}
                 className="w-full h-full object-cover transition-transform duration-200 ease-in-out hover:scale-105"
                 alt=""
               />
-            </a>
+            </NavLink>
           </div>
           <div className="flex flex-col items-start gap-y-2 overflow-hidden p-3.5 border-b-2 border-gray-100">
             {/* <span
